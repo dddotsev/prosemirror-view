@@ -400,4 +400,12 @@ describe("Decoration drawing", () => {
     view.dispatch(view.state.tr.insertText("!", 2, 2))
     ist(view.dom.querySelector("button"), widgetDOM)
   })
+
+  it("redraws text node with added decoration", () => {
+    let view = tempEditor({doc: doc(p("test")),
+                           plugins: [decoPlugin([])]})
+    let para = view.dom.firstChild
+    updateDeco(view, [make("2-4-bar")])
+    ist(para.textContent, 'test')
+  })
 })
